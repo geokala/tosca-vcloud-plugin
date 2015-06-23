@@ -244,14 +244,8 @@ class VcloudAirClient(object):
                     break
 
         for _ in range(self.LOGIN_RETRY_NUM):
-            all_instances = vca.get_instances() or []
-            instances = [instance for instance in all_instances
-                         if instance['region'] == region]
-            if len(instances) == 0:
-                raise cfy_exc.NonRecoverableError("No instances to login to.")
-            instance = instances[0]
             instance_logined = vca.login_to_instance(
-                instance['id'], password, token, None)
+                None, password, token, None)
             if instance_logined is False:
                 ctx.logger.info("Login to instance failed. Retrying...")
                 time.sleep(RELOGIN_TIMEOUT)
@@ -261,10 +255,8 @@ class VcloudAirClient(object):
                 break
 
         for _ in range(self.LOGIN_RETRY_NUM):
-            instance = vca.get_instances()[0]
-
             instance_logined = vca.login_to_instance(
-                instance['id'],
+                None,
                 None,
                 vca.vcloud_session.token,
                 vca.vcloud_session.org_url)
