@@ -5,7 +5,7 @@ vcloud_service: VDC
 vcloud_org: VDC
 vcloud_vdc: VDC
 vcloud_service_type: ondemand
-vcloud_instance: 00000000-0000-0000-0000-000000000000
+vcloud_region: some_region
 edge_gateway: gateway
 manager_server_name: some-server
 manager_server_catalog: default-catalog
